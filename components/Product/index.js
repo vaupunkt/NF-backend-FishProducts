@@ -15,6 +15,13 @@ export default function Product() {
   const { data, isLoading, mutate } = useSWR(`/api/products/${id}`);
   const [isEditMode, setIsEditMode] = useState(false);
 
+  async function handleDeleteProduct(id) {
+    const response = await fetch(`/api/products/${id}`, {
+      method: "DELETE",
+    });
+    router.push("/");
+  }
+
   async function handleEditProduct(event) {
     event.preventDefault();
 
@@ -56,6 +63,14 @@ export default function Product() {
           </section>
         );
       })}
+      <StyledButton
+        type="button"
+        onClick={() => {
+          handleDeleteProduct(id);
+        }}
+      >
+        Delete Product
+      </StyledButton>
       <StyledButton
         type="button"
         onClick={() => {

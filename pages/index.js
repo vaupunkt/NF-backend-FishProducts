@@ -18,7 +18,7 @@ export default function HomePage() {
     const productData = Object.fromEntries(formData);
 
     const response = await fetch("/api/products", {
-      method: "PUT",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(productData),
     });
